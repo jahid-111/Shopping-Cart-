@@ -1,6 +1,15 @@
 console.log("Main Js file");
 
 
+
+// ============== INPUT VALUE 
+function ValueOfInputTag(inputTag){
+    const theTag=document.getElementById(inputTag);
+    const theTagString = theTag.value;
+    const theInputValue= parseInt(theTagString);
+    return theInputValue;
+}
+
 // ============== INNER TEXT VALUE 
 function elementToValue(elementName){
     const theElement = document.getElementById(elementName);
@@ -8,15 +17,6 @@ function elementToValue(elementName){
     const theElementValue = parseInt(theElementString);
         return theElementValue;
 }
-
-// ============== INPUT VALUE 
-function ValueOfInputTag(inputTag){
-    const theTag=document.getElementById(inputTag);
-    const theTagString = theTag.value;
-    const theInputValue= parseInt(theTagString);
-        return theInputValue;
-}
-
 // SET VALUE ON THE DIPLAY  
 function setValueDisplay(theTag, theValue){
     const tag= document.getElementById(theTag);
@@ -93,3 +93,32 @@ document.getElementById('mobileDecrement').addEventListener('click',function(){
     setTextDisplay("PriceTotal", sumOFMobile);
 })
 
+// =================== FOR CHECK BUTTON 
+
+
+function total(){
+    const PriceTotalMobile = elementToValue("PriceTotalMobile")
+    const PriceTotal = elementToValue("PriceTotal");
+    const total= PriceTotalMobile+PriceTotal;
+    setTextDisplay('total', total)
+    return total
+}
+
+
+function tax(){
+    const cartTotal = total();
+    const Tax = cartTotal*0.1;
+    setTextDisplay('tax',Tax)
+    return Tax;
+}
+
+
+ document.getElementById('chkBtn').addEventListener('click', function(){
+        total();
+        tax();
+
+
+    // console.log(Tax)
+
+
+ })
