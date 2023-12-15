@@ -95,6 +95,7 @@ document.getElementById('mobileDecrement').addEventListener('click',function(){
 
 // =================== FOR CHECK BUTTON 
 
+// ================================== MAKING TOTAL 
 
 function total(){
     const PriceTotalMobile = elementToValue("PriceTotalMobile")
@@ -104,7 +105,7 @@ function total(){
     return total
 }
 
-
+// ================================== MAKING TAX
 function tax(){
     const cartTotal = total();
     const Tax = cartTotal*0.1;
@@ -113,12 +114,36 @@ function tax(){
 }
 
 
+// ==================================MAKING DISCOUNT 
+
+function discount(){
+    const cartTotal = total();
+    const discount = cartTotal/15;
+    const discountString=discount.toFixed(2);
+    const discountValue=parseFloat(discountString);
+    setTextDisplay('discount',discountValue);
+    return discountValue;
+}
+
+// ================================== MAKING TOTAL 
+function SubTotoal(){
+    const cartTotal = total();
+    const taxHere=tax();
+    const discountHare=discount();
+    const TotalAndVat = cartTotal+taxHere;
+    const TotalAndVatMinusDiscount=TotalAndVat-discountHare;
+    setTextDisplay('subtotal',TotalAndVatMinusDiscount)
+
+    // console.log(TotalAndVatMinusDiscount)
+    return TotalAndVatMinusDiscount;    
+}
+
+
+
+// ================================== Checkout addEventListener ==================================
  document.getElementById('chkBtn').addEventListener('click', function(){
         total();
         tax();
-
-
-    // console.log(Tax)
-
-
+        discount();
+        SubTotoal();
  })
